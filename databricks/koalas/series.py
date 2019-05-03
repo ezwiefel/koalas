@@ -481,8 +481,75 @@ class Series(_Frame):
         else:
             return ks
 
-    @derived_from(DataFrame)
     def head(self, n=5):
+        """
+        Return the first `n` rows.
+
+        This function returns the first `n` rows of a Series
+
+        Parameters
+        ----------
+        n : int, default 5
+            Number of rows to select.
+
+        Returns
+        -------
+        series_head : Series
+
+        See Also
+        --------
+        Dataframe.head : First `n` rows of a Dataframe
+
+        Examples
+        --------
+        >>> df = ks.DataFrame({'animal':['alligator', 'bee', 'falcon', 'lion',
+        ...                              'monkey', 'parrot', 'shark', 'whale', 'zebra'],
+        ...                    'count': [3, 20, 4, 2, 5, 5, 1, 0, 4]})
+
+        >>> df
+              animal  count
+        0  alligator      3
+        1        bee     20
+        2     falcon      4
+        3       lion      2
+        4     monkey      5
+        5     parrot      5
+        6      shark      1
+        7      whale      0
+        8      zebra      4
+
+
+        >>> df['animal']
+        0    alligator
+        1          bee
+        2       falcon
+        3         lion
+        4       monkey
+        5       parrot
+        6        shark
+        7        whale
+        8        zebra
+        Name: animal, dtype: object
+
+        Viewing the first 5 lines
+
+        >>> df['animal'].head()
+        0    alligator
+        1          bee
+        2       falcon
+        3         lion
+        4       monkey
+        Name: animal, dtype: object
+
+        Viewing the first `n` lines (three in this case)
+
+        >>> df['animal'].head(3)
+        0    alligator
+        1          bee
+        2       falcon
+        Name: animal, dtype: object
+        """
+
         return _col(self.to_dataframe().head(n))
 
     def unique(self):
